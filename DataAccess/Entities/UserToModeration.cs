@@ -5,12 +5,11 @@ using System.Text;
 
 namespace DataAccess.Entities
 {
-    public class Role
+    public class UserToModeration
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
-        public string UserRole { get; set; }
-        public ICollection<User> User { get; set; }
-
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using BusinessLogic.UserService;
+using BusinessLogic.TaskService;
 
 namespace TaskManagerProject1
 {
@@ -58,6 +59,8 @@ namespace TaskManagerProject1
 
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITaskService, TaskService>();
+
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory

@@ -7,10 +7,10 @@ using System.Text;
 namespace DataAccess
 {
     public interface IApplicationDbContext
-    {
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Status> Statuses { get; set; }
+    {        
         public DbSet<Task> Tasks { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<UserToModeration> UsersToModeration { get; set; }
+        public int SaveChanges();
     }
 }
