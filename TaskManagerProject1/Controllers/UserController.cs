@@ -20,12 +20,14 @@ namespace TaskManagerProject1.Controllers
         }
 
         [HttpGet]
+        [Route("get-users")]
         public ActionResult<List<UserDto>> GetAllUsers()
         {
             return _userService.GetAllUsers();
         }
 
         [HttpPost]
+        [Route("add-user")]
         public ActionResult<string> AddUser(UserDto user)
         {
             if (user.Email != null)

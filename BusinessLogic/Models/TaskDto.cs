@@ -11,5 +11,7 @@ namespace BusinessLogic.Models
         public string Description { get; set; }
         public string StatusId { get; set; }
         public string UserId { get; set; }
+        public string NameUser { get; set; }
+
     }
 }

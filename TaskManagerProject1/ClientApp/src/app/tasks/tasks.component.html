@@ -1,0 +1,28 @@
+<button>Add Task</button>
+<div *ngIf="Tasks">
+<table class="redTable">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Assignet To</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td colspan="4">
+        <div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
+      </td>
+    </tr>
+  </tfoot>
+  <tbody> 
+     <tr *ngFor="let task of Tasks">
+        <td>{{task.title}}</td>
+        <td>{{task.description}}</td>
+        <td>{{task.statusId}}</td>
+        <td>{{task.nameUser}}</td>
+    </tr>   
+  </tbody>
+</table>
+</div>

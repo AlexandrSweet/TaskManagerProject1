@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using BusinessLogic.UserService;
 using BusinessLogic.TaskService;
+using System.Linq;
 
 namespace TaskManagerProject1
 {
@@ -97,6 +98,7 @@ namespace TaskManagerProject1
             }
 
             app.UseRouting();
+            SeedDefault(app);
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -119,6 +121,23 @@ namespace TaskManagerProject1
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+        }
+        private void SeedDefault(IApplicationBuilder app)
+        {
+            var scopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                if (dbContext.Users.FirstOrDefault(u => u.RoleId == "admin") == null)
+                {                
+                    
+                    dbContext.Users.Add(new DataAccess.Entities.User { Email = "Admin@gmail.com", Password = "admin", RoleId = "admin" });
+                                        
+                    dbContext.SaveChanges();
+
+                }
+
+            }
         }
     }
 }

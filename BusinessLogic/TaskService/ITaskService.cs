@@ -8,5 +8,6 @@ namespace BusinessLogic.TaskService
     public interface ITaskService
     {
         public string AddTask(TaskDto taskDto);
+        public List<TaskDto> GetAllTasks();
     }
 }

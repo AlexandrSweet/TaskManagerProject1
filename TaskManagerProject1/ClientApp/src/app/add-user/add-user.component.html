@@ -1,0 +1,28 @@
+<form class="userToAdd" [formGroup]="userToAddForm" (submit)="onSubmit()">
+  <h2>Add User</h2>
+
+  <label>
+    Email:
+    <input type="text" formControlName="email" />
+    <small *ngIf="isControlInvalid('email')">A 'Email' value is required</small>
+  </label>
+  <label>
+    Password:
+    <input type="text" formControlName="password" />
+    <small *ngIf="isControlInvalid('password')">A 'Password' value is required</small>
+  </label>
+
+  <label>
+    Role:
+    <select formControlName="roleId">
+      <option>Developer</option>
+      <option>TeamManager</option>
+    </select>
+    <small *ngIf="isControlInvalid('roleId')">A 'role' value is required</small>
+  </label>
+
+  <button type="submit" [disabled]="!userToAddForm.valid">Add</button>
+  <button type="button" onclick="window.history.back()">Cancel</button>
+  
+
+</form>

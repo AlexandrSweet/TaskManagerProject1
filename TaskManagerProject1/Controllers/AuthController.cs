@@ -24,14 +24,21 @@ namespace TaskManagerProject1.Controllers
             {
                 return BadRequest("Invalid data");
             }
-            if(user.Email == "Admin@gmail.com" || user.Password == "admin" )
+            if(user.Email == "Admin@gmail.com" && user.Password == "admin" )
             {
+                var claim = new List<Claim>
+                {
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, "adminEmail"),
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, "admin")
+                };
+
+
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@123"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 var tokenOptions = new JwtSecurityToken(
                     issuer: "https://localhost:44331",
                     audience: "https://localhost:44331",
-                    claims: new List<Claim>(),
+                    claims: claim,
                     expires: DateTime.Now.AddMinutes(10),
                     signingCredentials: signinCredentials);
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);

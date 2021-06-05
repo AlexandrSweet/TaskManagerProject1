@@ -28,39 +28,36 @@ namespace BusinessLogic.UserService
         }
 
         public string AddUser(UserDto userDto)
-        {
-            var user = new User
+        {            
+            var resultSearch = _applicationDbContext.Users.FirstOrDefault(u => u.Email == userDto.Email);
+
+
+            if (resultSearch == null)
             {
-                Email = userDto.Email,
-                Password = userDto.Password,
-                RoleId = userDto.RoleId
-            };
-            user.Tasks = new List<Task>();
-            foreach (var tas in userDto.Tasks)
-            {
-                user.Tasks.Add(new Task
+                var user = new User
                 {
-                    Id = tas.Id
-                });
+                    Email = userDto.Email,
+                    Password = userDto.Password,
+                    RoleId = userDto.RoleId
+                };
+                
+                _applicationDbContext.Users.Add(user);
+                _applicationDbContext.SaveChanges();
+                return user.Id;
             }
-            _applicationDbContext.Users.Add(user);
-            _applicationDbContext.SaveChanges();
-            return user.Id;            
+            return "email not unique";
         }
 
         public List<UserDto> GetAllUsers()
         {
             var Users = _applicationDbContext.Users.Include(t => t.Tasks).ToList();
-            var resultList = _autoMapper.Map<List<User>, List<UserDto>>(Users);
+            var resultList = _autoMapper.Map<List<User>, List<UserDto>>(Users);           
             return resultList;
         }
 
     public Models.UserDto GetUserById(string id)
         {
             throw new NotImplementedException();
-        }
-      
-    }
-
-   
+        }      
+    }   
 }

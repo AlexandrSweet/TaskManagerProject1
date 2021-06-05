@@ -31,6 +31,13 @@ namespace TaskManagerProject1.Controllers
             return BadRequest("Dont try to add an invalid data !!!");
         }
 
+        [HttpGet]
+        [Route("get-tasks")]
+        public ActionResult<List<TaskDto>> GetAllTasks()
+        {
+            return _taskService.GetAllTasks();
+        }
+
 
     }
 }
