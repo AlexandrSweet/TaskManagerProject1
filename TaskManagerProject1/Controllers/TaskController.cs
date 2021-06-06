@@ -39,6 +39,16 @@ namespace TaskManagerProject1.Controllers
             return _taskService.GetAllTasks();
         }
 
-
+        [HttpPut]
+        [Route("edit-task")]
+        public bool EditTask(TaskDto task)
+        {            
+            if (task != null)
+            {
+                _taskService.EditTask(task);
+                return true;
+            }
+            return false;
+        }
     }
 }

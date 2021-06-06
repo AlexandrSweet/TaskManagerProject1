@@ -40,6 +40,22 @@ namespace BusinessLogic.TaskService
             _applicationDbContext.SaveChanges();
             return task.Id;
         }
+        public bool EditTask(TaskDto taskDto)
+        {
+            var task = _applicationDbContext.Tasks.FirstOrDefault(t => t.Id == taskDto.Id);
+            if(task != null)
+            {
+                task.Title = taskDto.Title;
+                task.Description = taskDto.Description;
+                task.StatusId = taskDto.StatusId;
+                task.UserId = taskDto.UserId;
+                
+                _applicationDbContext.Tasks.Update(task);
+                _applicationDbContext.SaveChanges();
+                return true;
+            }
+            else return false;
+        }
 
         public List<TaskDto> GetAllTasks()
         {

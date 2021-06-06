@@ -16,6 +16,7 @@ import { UsersComponent } from './users/users.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AddTaskComponent } from './add-task/add-task.component';
     TasksComponent,
     UsersComponent,
     AddUserComponent,
-    AddTaskComponent
+    AddTaskComponent, 
+    EditTaskComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -44,6 +46,7 @@ import { AddTaskComponent } from './add-task/add-task.component';
       { path: 'users', component: UsersComponent },
       { path: 'add-user', component: AddUserComponent },
       { path: 'add-task', component: AddTaskComponent },
+      { path: 'edit-task', component: EditTaskComponent },
     ])
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],

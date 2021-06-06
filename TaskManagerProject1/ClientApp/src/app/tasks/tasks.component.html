@@ -50,15 +50,7 @@
       <tr *ngFor="let task of Tasks">
         <td>{{task.title}}</td>
         <td>{{task.description}}</td>
-        <td>
-          <select>
-            <option>{{task.statusId}}</option>
-            <option value="ReadyForDevelopment">ReadyForDevelopment</option>
-            <option value="InProgress">InProgress</option>
-            <option value="ReadyForTesting">ReadyForTesting</option>
-            <option value="Done">Done</option>
-          </select>
-        </td>
+        <td>{{task.statusId}}</td>
         <td>{{task.emailUser}}</td>
         <td><button type="button" (click)="sendToEditTask(task)" >submit</button></td>
       </tr>

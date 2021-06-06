@@ -1,0 +1,32 @@
+<form class="taskToEdit" [formGroup]="taskToEditForm" (submit)="onEdit()">
+  <h2>Edit Task</h2>
+
+  <label>
+    Title:
+    <input type="text" formControlName="title" />
+  </label>
+  <label>
+    Description:
+    <input type="text" formControlName="description" />
+  </label>
+  <label>
+    Status:
+    <select formControlName="statusId">
+      <option value="ReadyForDevelopment">ReadyForDevelopment</option>
+      <option value="InProgress">InProgress</option>
+      <option value="ReadyForTesting">ReadyForTesting</option>
+      <option value="Done">Done</option>
+    </select>
+  </label>
+  <label>
+    Assignet To:
+    <input type="text" formControlName="emailUser" />
+  </label>
+
+  <button type="submit">Edit</button>
+  <button type="button" onclick="window.history.back()">Cancel</button>
+</form>
+
+  
+
+
