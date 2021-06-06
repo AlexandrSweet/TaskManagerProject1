@@ -50,7 +50,7 @@ namespace BusinessLogic.TaskService
             {
                 var id = item.UserId;
                 var user = _applicationDbContext.Users.FirstOrDefault(u => u.Id == id);
-                item.NameUser = user?.Email;
+                item.EmailUser = user?.Email;
             }          
 
             return resultList;

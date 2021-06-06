@@ -36,7 +36,7 @@ export class AddUserComponent implements OnInit {
     const payload = this.userToAdd;
    this.http.post(this.baseUrl + 'user/add-user', payload).subscribe(
       result => { console.log("Users controller says: OK") },
-     error => { console.log("Users controller says: " + error) });
+     error => { console.log("Users controller says: " + error) });    
     this.router.navigate(['/users']);
   }
 

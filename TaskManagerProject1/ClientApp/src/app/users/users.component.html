@@ -1,4 +1,32 @@
-<p>users works!</p>
+<header>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']">TaskManagerProject1</a>
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+              aria-label="Toggle navigation"
+              [attr.aria-expanded]="isExpanded"
+              (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+           [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav flex-grow">
+
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/tasks']">Tasks</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<br />
+<h2>All Users</h2>
+<br />
 <button [routerLink]="['/add-user']">Add User</button>
 <div *ngIf="Users">
   <table class="redTable">
@@ -6,7 +34,7 @@
       <tr>
         <th>Email</th>
         <th>password</th>
-        <th>Role</th>        
+        <th>Role</th>
       </tr>
     </thead>
     <tfoot>
@@ -20,7 +48,7 @@
       <tr *ngFor="let user of Users">
         <td>{{user.email}}</td>
         <td>{{user.password}}</td>
-        <td>{{user.roleId}}</td>        
+        <td>{{user.roleId}}</td>
       </tr>
     </tbody>
   </table>

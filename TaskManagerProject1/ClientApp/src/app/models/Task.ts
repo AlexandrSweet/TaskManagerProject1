@@ -3,5 +3,5 @@ export class Task {
   description: string;
   statusId: string;
   userId: string;
-  nameUser: string;
+  emailUser: string;
 }

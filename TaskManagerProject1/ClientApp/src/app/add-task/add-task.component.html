@@ -1,0 +1,20 @@
+<form class="taskToAdd" [formGroup]="taskToAddForm" (submit)="onSubmit()">
+  <h2>Add Task</h2>
+
+  <label>
+    Title:
+    <input type="text" formControlName="title" />
+    <small *ngIf="isControlInvalid('title')">A 'Title' value is required</small>
+  </label>
+  <label>
+    Description:
+    <input type="text" formControlName="description" />
+    <small *ngIf="isControlInvalid('description')">A 'Description' value is required</small>
+  </label> 
+
+  <button type="submit">Add</button>
+  <button type="button" onclick="window.history.back()">Cancel</button>
+
+
+</form>
+

@@ -10,6 +10,8 @@ import { Task } from '../models/Task';
 export class TasksComponent implements OnInit {
 
   public Tasks: Array<Task>;
+  public task: Task;
+  public stat: string;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<Array<Task>>(baseUrl + 'task/get-tasks').subscribe(
@@ -18,6 +20,10 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+  sendToEditTask(task: Task) {
+    this.task = task;
+    
   }
 
 }

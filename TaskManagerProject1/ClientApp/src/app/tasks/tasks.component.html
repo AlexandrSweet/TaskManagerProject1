@@ -1,28 +1,67 @@
-<button>Add Task</button>
+<header>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']">TaskManagerProject1</a>
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+              aria-label="Toggle navigation"
+              [attr.aria-expanded]="isExpanded"
+              (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+           [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav flex-grow">
+
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/users']">Users</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<br />
+<h2>All Tasks</h2>
+<br />
+<button [routerLink]="['/add-task']">Add Task</button>
 <div *ngIf="Tasks">
-<table class="redTable">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>Assignet To</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr>
-      <td colspan="4">
-        <div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
-      </td>
-    </tr>
-  </tfoot>
-  <tbody> 
-     <tr *ngFor="let task of Tasks">
+  <table class="redTable">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Assignet To</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="5">
+          <div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
+        </td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr *ngFor="let task of Tasks">
         <td>{{task.title}}</td>
         <td>{{task.description}}</td>
-        <td>{{task.statusId}}</td>
-        <td>{{task.nameUser}}</td>
-    </tr>   
-  </tbody>
-</table>
+        <td>
+          <select>
+            <option>{{task.statusId}}</option>
+            <option value="ReadyForDevelopment">ReadyForDevelopment</option>
+            <option value="InProgress">InProgress</option>
+            <option value="ReadyForTesting">ReadyForTesting</option>
+            <option value="Done">Done</option>
+          </select>
+        </td>
+        <td>{{task.emailUser}}</td>
+        <td><button type="button" (click)="sendToEditTask(task)" >submit</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>

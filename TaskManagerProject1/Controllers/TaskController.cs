@@ -22,6 +22,7 @@ namespace TaskManagerProject1.Controllers
             _taskService = taskService;            
         }
         [HttpPost]
+        [Route("add-task")]
         public ActionResult<string> AddTask(TaskDto task)
         {
             if (task.Title != null)
