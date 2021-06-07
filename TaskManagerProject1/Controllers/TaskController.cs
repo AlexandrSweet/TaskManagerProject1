@@ -15,11 +15,11 @@ namespace TaskManagerProject1.Controllers
     public class TaskController : ControllerBase
     {
         private readonly ITaskService _taskService;
-        
 
-        public TaskController (ITaskService taskService)
+
+        public TaskController(ITaskService taskService)
         {
-            _taskService = taskService;            
+            _taskService = taskService;
         }
         [HttpPost]
         [Route("add-task")]
@@ -42,13 +42,28 @@ namespace TaskManagerProject1.Controllers
         [HttpPut]
         [Route("edit-task")]
         public bool EditTask(TaskDto task)
-        {            
+        {
             if (task != null)
             {
                 _taskService.EditTask(task);
                 return true;
             }
             return false;
+        }
+        [HttpPost]
+        [Route("delete-task")]
+        public ActionResult DeleteTask(TaskDto task)
+        {
+            var isSuccess = _taskService.DeleteTask(task.Id);
+
+            if (isSuccess)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }

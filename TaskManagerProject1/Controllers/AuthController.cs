@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BusinessLogic.Models;
+using BusinessLogic.UserService;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -16,6 +18,12 @@ namespace TaskManagerProject1.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly IUserService _userService;
+        public AuthController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [HttpPost]
         [Route("login")]
         public IActionResult Login(LoginModel user)
@@ -24,12 +32,17 @@ namespace TaskManagerProject1.Controllers
             {
                 return BadRequest("Invalid data");
             }
-            if(user.Email == "Admin@gmail.com" && user.Password == "admin" )
+            var listOfAllUsers = new List<UserDto>();
+            listOfAllUsers = _userService.GetAllUsers();
+
+            if ((listOfAllUsers.FirstOrDefault(u => u.Email == user.Email) != null) && 
+                (listOfAllUsers.FirstOrDefault(u => u.Password == user.Password) != null))
             {
+                var role = listOfAllUsers.FirstOrDefault(u => u.Email == user.Email).RoleId.ToString();
                 var claim = new List<Claim>
                 {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, "adminEmail"),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, "admin")
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
                 };
 
 

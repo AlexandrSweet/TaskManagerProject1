@@ -20,11 +20,17 @@
   </label>
   <label>
     Assignet To:
-    <input type="text" formControlName="emailUser" />
+    <select formControlName="emailUser">
+      <option *ngFor="let user  of Users">{{user.email}}</option>
+    </select>
   </label>
 
   <button type="submit">Edit</button>
   <button type="button" onclick="window.history.back()">Cancel</button>
+  <br />
+  <br />
+  <br />
+  <button type="button" (click)="deleteTask()">DELETE</button>
 </form>
 
   

@@ -48,7 +48,12 @@ namespace BusinessLogic.TaskService
                 task.Title = taskDto.Title;
                 task.Description = taskDto.Description;
                 task.StatusId = taskDto.StatusId;
-                task.UserId = taskDto.UserId;
+                if(taskDto.EmailUser != null)
+                {
+                    var userId = _applicationDbContext.Users.FirstOrDefault(u => u.Email == taskDto.EmailUser).Id;
+
+                    task.UserId = userId;
+                }             
                 
                 _applicationDbContext.Tasks.Update(task);
                 _applicationDbContext.SaveChanges();
@@ -67,9 +72,23 @@ namespace BusinessLogic.TaskService
                 var id = item.UserId;
                 var user = _applicationDbContext.Users.FirstOrDefault(u => u.Id == id);
                 item.EmailUser = user?.Email;
-            }          
+            }         
 
             return resultList;
+        }
+        public bool DeleteTask(string id)
+        {
+            var task = _applicationDbContext.Tasks.FirstOrDefault(t => t.Id == id);
+            if(task != null)
+            {
+                _applicationDbContext.Tasks.Remove(task);
+                _applicationDbContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

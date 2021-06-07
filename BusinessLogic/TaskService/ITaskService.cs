@@ -11,5 +11,6 @@ namespace BusinessLogic.TaskService
         public string AddTask(TaskDto taskDto);
         public bool EditTask(TaskDto taskDto);
         public List<TaskDto> GetAllTasks();
+        public bool DeleteTask(string id);
     }
 }
