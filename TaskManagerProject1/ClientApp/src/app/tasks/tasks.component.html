@@ -37,11 +37,13 @@
         <th>Status</th>
         <th>Assignet To</th>
         <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tfoot>
       <tr>
-        <td colspan="5">
+        <td colspan="7">
           <div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
         </td>
       </tr>
@@ -66,7 +68,9 @@
           </select>
         </td>
 
-        <td><button type="button" (click)="onEdit(taskToEditForm1, task)">edit</button></td>
+        <td><button type="button" (click)="onEdit(taskToEditForm1, task)">EDIT</button></td>
+        <td></td>
+        <td><button type="button" (click)="deleteTask(task)">DELETE</button></td>
       </tr>
     </tbody>
   </table>

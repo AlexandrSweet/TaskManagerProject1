@@ -60,6 +60,16 @@ export class TasksComponent implements OnInit {
     window.location.reload();
   }
 
+  public deleteTask(task) {  
+    this.task = task;
+    const payload = this.task;
+    this.http.post(this.baseUrl + 'task/delete-task', payload).subscribe(
+      result => { console.log("Task controller says: OK") },
+      error => { console.log("Task controller says: " + error) });
+    this.router.navigate(['/tasks']);
+    window.location.reload();
+  }
+
   private buildForm() {
     this.taskToEditForm1 = this.formBuilder.group({
       id: ['', Validators.required],
