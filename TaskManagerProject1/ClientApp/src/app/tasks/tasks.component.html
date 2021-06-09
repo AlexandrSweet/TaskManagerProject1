@@ -27,7 +27,7 @@
 <br />
 <h2>All Tasks</h2>
 <br />
-<button [routerLink]="['/add-task']">Add Task</button>
+
 <div *ngIf="Tasks">
   <table class="redTable">
     <thead>
@@ -47,12 +47,26 @@
       </tr>
     </tfoot>
     <tbody>
-      <tr *ngFor="let task of Tasks">
+      <tr *ngFor="let task of Tasks" [formGroup]="taskToEditForm1">
         <td>{{task.title}}</td>
         <td>{{task.description}}</td>
-        <td>{{task.statusId}}</td>
-        <td>{{task.emailUser}}</td>
-        <td><button type="button" (click)="sendToEditTask(task)" >edit</button></td>
+        <td>
+          <select formControlName="statusId">
+            <option>{{task.statusId}}</option>
+            <option value="ReadyForDevelopment">ReadyForDevelopment</option>
+            <option value="InProgress">InProgress</option>
+            <option value="ReadyForTesting">ReadyForTesting</option>
+            <option value="Done">Done</option>
+          </select>
+        </td>
+        <td>
+          <select formControlName="emailUser">
+            <option>{{task.emailUser}}</option>
+            <option *ngFor="let user of Users">{{user.email}}</option>
+          </select>
+        </td>
+
+        <td><button type="button" (click)="onEdit(taskToEditForm1, task)">edit</button></td>
       </tr>
     </tbody>
   </table>

@@ -50,6 +50,7 @@ namespace BusinessLogic.TaskService
                 task.StatusId = taskDto.StatusId;
                 if(taskDto.EmailUser != null)
                 {
+                   
                     var userId = _applicationDbContext.Users.FirstOrDefault(u => u.Email == taskDto.EmailUser).Id;
 
                     task.UserId = userId;
