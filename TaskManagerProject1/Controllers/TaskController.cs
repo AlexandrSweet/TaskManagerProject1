@@ -1,6 +1,7 @@
 ﻿using BusinessLogic.Models;
 using BusinessLogic.TaskService;
 using DataAccess;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -51,7 +52,8 @@ namespace TaskManagerProject1.Controllers
             return false;
         }
         [HttpPost]
-        [Route("delete-task")]
+       
+        [Route("delete-task")]       
         public ActionResult DeleteTask(TaskDto task)
         {
             var isSuccess = _taskService.DeleteTask(task.Id);

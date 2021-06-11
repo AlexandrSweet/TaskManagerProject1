@@ -34,7 +34,7 @@ export class AddTaskComponent implements OnInit {
   }
   public clearData() {
     localStorage.clear();
-    this.taskToAddForm.reset();
+    /*this.taskToAddForm.reset();*/
   }
   public isControlInvalid(controlName: string): boolean {
     let control = this.taskToAddForm.get(controlName);
